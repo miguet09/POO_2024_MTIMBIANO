@@ -1,0 +1,42 @@
+class Temperatura:
+    def __init__(self, datos):
+        self.datos = datos
+
+    def calcular_promedio_semanal(self):
+        promedios = []
+        for ciudad_idx, ciudad in enumerate(self.datos):
+            for semana_idx, semana in enumerate(ciudad):
+                promedio = round(sum(semana) / len(semana), 2)
+                promedios.append((ciudad_idx + 1, semana_idx + 1, promedio))
+        return promedios
+
+    def mostrar_promedios(self):
+        promedios = self.calcular_promedio_semanal()
+        for ciudad, semana, promedio in promedios:
+            print(f"Promedio de temperatura para Ciudad {ciudad}, Semana {semana}: {promedio}°C")
+
+
+# Datos de temperaturas
+temperaturas = [
+    [   # Ciudad 1
+        [18, 20, 21, 23, 21, 20, 20],  # Semana 1
+        [18, 23, 21, 21, 23, 21, 24],  # Semana 2
+        [23, 21, 23, 21, 24, 21, 17],  # Semana 3
+        [21, 20, 23, 21, 22, 19, 17]   # Semana 4
+    ],
+    [   # Ciudad 2
+        [12, 10, 13, 11, 12, 14, 11],  # Semana 1
+        [16, 12, 12, 10, 13, 15, 14],  # Semana 2
+        [14, 10, 12, 11, 10, 12, 11],  # Semana 3
+        [13, 15, 14, 12, 15, 14, 11]   # Semana 4
+    ],
+]
+
+def main():
+    temperatura = Temperatura(temperaturas)
+    print("Programa para calcular los promedios semanales de temperaturas\n")
+    temperatura.mostrar_promedios()
+
+# Ejecución del programa
+if __name__ == "__main__":
+    main()
